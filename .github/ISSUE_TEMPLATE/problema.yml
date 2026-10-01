@@ -1,0 +1,40 @@
+name: Problema
+description: Uma skill não funcionou como deveria
+title: "[Problema] "
+labels: ["bug"]
+body:
+  - type: input
+    id: skill
+    attributes:
+      label: Qual skill?
+      placeholder: Aprimorar design de site
+    validations:
+      required: true
+  - type: dropdown
+    id: onde
+    attributes:
+      label: Onde você estava usando?
+      options:
+        - Claude (site ou app)
+        - Claude Code
+        - ChatGPT
+        - Codex
+        - Outro
+    validations:
+      required: true
+  - type: textarea
+    id: pedido
+    attributes:
+      label: O que você pediu?
+    validations:
+      required: true
+  - type: textarea
+    id: aconteceu
+    attributes:
+      label: O que aconteceu? E o que você esperava?
+    validations:
+      required: true
+  - type: textarea
+    id: extra
+    attributes:
+      label: Prints, mensagens de erro ou arquivos (opcional)

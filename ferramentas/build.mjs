@@ -9,7 +9,7 @@
 //   dist/<skill>-chatgpt.zip         instruções + arquivos de conhecimento para um GPT personalizado
 // E também:
 //   .claude-plugin/marketplace.json  catálogo para instalar pelo Claude Code (/plugin)
-//   README.md                        tabela de skills e selo de contagem (entre os marcadores)
+//   README.md, docs/readme/README.en.md   cartões de skills e selo de contagem (entre os marcadores)
 //
 // Sem dependências. Node 18+.
 
@@ -120,7 +120,12 @@ for (const nome of fs.readdirSync(pastaSkills).sort()) {
     if (chatgpt.length > LIMITE_GPT) erros.push(`skills/${nome}/chatgpt.md: ${chatgpt.length} caracteres (o GPT aceita até ${LIMITE_GPT})`);
   }
 
-  skills.push({ nome, dir, fm, meta, arquivos, chatgpt });
+  const pastaExemplo = path.join(RAIZ, 'exemplos', nome);
+  const capa = fs.existsSync(pastaExemplo) ? fs.readdirSync(pastaExemplo).find(a => /^capa\.(png|jpe?g|gif|webp)$/i.test(a)) : undefined;
+  if (!capa) avisos.push(`skills/${nome}: sem exemplos/${nome}/capa.(jpg|png|gif|webp) — o cartão no README fica sem imagem`);
+  if (!meta['resumo-en']) avisos.push(`${onde}: sem "metadata.resumo-en" — o README em inglês usa o resumo em português`);
+
+  skills.push({ nome, dir, fm, meta, arquivos, chatgpt, capa });
 }
 if (!skills.length) erros.push('nenhuma skill encontrada em skills/');
 
@@ -216,28 +221,47 @@ const marketplace = {
 };
 gerados.set('.claude-plugin/marketplace.json', Buffer.from(JSON.stringify(marketplace, null, 2) + '\n', 'utf8'));
 
-// README: tabela e selo entre marcadores; o resto do arquivo é escrito à mão.
+// READMEs: cartões de skills e selo entre marcadores; o resto dos arquivos é escrito à mão.
+const LEIAMES = [
+  { arquivo: 'README.md', idioma: 'pt', prefixo: '' },
+  { arquivo: 'docs/readme/README.en.md', idioma: 'en', prefixo: '../../' },
+];
+const TEXTOS = {
+  pt: { claude: 'Baixar para Claude', chatgpt: 'Baixar para ChatGPT', detalhes: 'Detalhes →' },
+  en: { claude: 'Download for Claude', chatgpt: 'Download for ChatGPT', detalhes: 'Details (in Portuguese) →' },
+};
 const baixar = arq => `${URL_REPO}/raw/main/dist/${arq}`;
-const tabela = [
-  '| Skill | O que faz | Baixar |',
-  '| :-- | :-- | :-- |',
-  ...skills.map(s => {
-    const downloads = [`[Claude](${baixar(`${s.nome}.skill`)})`];
-    if (s.chatgpt) downloads.push(`[ChatGPT](${baixar(`${s.nome}-chatgpt.zip`)})`);
-    const sub = [`\`${s.nome}\``, s.meta.categoria].filter(Boolean).join(' · ');
-    return `| [**${s.meta.titulo}**](skills/${s.nome})<br><sub>${sub}</sub> | ${s.meta.resumo} | ${downloads.join(' · ')} |`;
-  }),
-].join('\n');
-const selo = `![Skills](https://img.shields.io/badge/skills-${skills.length}-6D28D9?style=flat-square)`;
+const attr = v => v.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
 
-const arqReadme = path.join(RAIZ, 'README.md');
-let readme = fs.readFileSync(arqReadme, 'utf8').replace(/\r\n/g, '\n');
-for (const [marca, conteudo, quebra] of [['skills', tabela, '\n'], ['selo', selo, '']]) {
-  const re = new RegExp(`(<!-- ${marca}:inicio -->)[\\s\\S]*?(<!-- ${marca}:fim -->)`);
-  if (!re.test(readme)) erros.push(`README.md: faltam os marcadores <!-- ${marca}:inicio --> e <!-- ${marca}:fim -->`);
-  readme = readme.replace(re, (_, ini, fim) => ini + quebra + conteudo + quebra + fim);
+// Um cartão por skill: texto e links à esquerda, capa (exemplos/<skill>/capa.*) à direita.
+function cartoes(idioma, prefixo) {
+  const t = TEXTOS[idioma];
+  const linhas = skills.map(s => {
+    const titulo = (idioma === 'en' && s.meta['titulo-en']) || s.meta.titulo;
+    const resumo = (idioma === 'en' && s.meta['resumo-en']) || s.meta.resumo;
+    const pagina = `${prefixo}skills/${s.nome}`;
+    const links = [`[${t.claude}](${baixar(`${s.nome}.skill`)})`];
+    if (s.chatgpt) links.push(`[${t.chatgpt}](${baixar(`${s.nome}-chatgpt.zip`)})`);
+    links.push(`[${t.detalhes}](${pagina})`);
+    const celulaTexto = `<td ${s.capa ? 'width="50%"' : 'colspan="2"'} valign="middle">\n\n### ${titulo}\n\n${resumo}\n\n${links.join(' · ')}\n\n</td>`;
+    const celulaCapa = s.capa && `<td width="50%">\n  <a href="${pagina}"><img src="${prefixo}exemplos/${s.nome}/${s.capa}" alt="${attr(titulo)}" width="100%" /></a>\n</td>`;
+    return ['<tr>', celulaTexto, celulaCapa, '</tr>'].filter(Boolean).join('\n');
+  });
+  return `<table>\n${linhas.join('\n')}\n</table>`;
 }
-gerados.set('README.md', Buffer.from(readme, 'utf8'));
+const selo = `<img src="https://img.shields.io/badge/skills-${skills.length}-7C3AED?style=flat" alt="${skills.length} skill(s)" />`;
+
+for (const { arquivo, idioma, prefixo } of LEIAMES) {
+  const p = path.join(RAIZ, arquivo);
+  if (!fs.existsSync(p)) { erros.push(`${arquivo}: não encontrado`); continue; }
+  let texto = fs.readFileSync(p, 'utf8').replace(/\r\n/g, '\n');
+  for (const [marca, conteudo, quebra] of [['skills', cartoes(idioma, prefixo), '\n'], ['selo', selo, '']]) {
+    const re = new RegExp(`(<!-- ${marca}:inicio -->)[\\s\\S]*?(<!-- ${marca}:fim -->)`);
+    if (!re.test(texto)) erros.push(`${arquivo}: faltam os marcadores <!-- ${marca}:inicio --> e <!-- ${marca}:fim -->`);
+    texto = texto.replace(re, (_, ini, fim) => ini + quebra + conteudo + quebra + fim);
+  }
+  gerados.set(arquivo, Buffer.from(texto, 'utf8'));
+}
 
 // Pacotes de skills que não existem mais
 const pastaDist = path.join(RAIZ, 'dist');

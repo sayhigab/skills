@@ -3,7 +3,7 @@
 Deixa um site que já existe mais bonito, mais rápido e mais agradável de usar — **sem mudar a cara dele**. E conserta sozinha letras e acentos quebrados.
 
 <p align="center">
-  <img src="../../exemplos/aprimorar-design-site/antes-depois.jpg" alt="Antes e depois: acentos quebrados, fonte errada e layout estourado no celular; depois, o mesmo site corrigido e refinado" width="520">
+  <img src="../../exemplos/aprimorar-design-site/capa.jpg" alt="Antes e depois: acentos quebrados, fonte errada e layout estourado no celular; depois, o mesmo site corrigido e refinado" width="720">
 </p>
 
 ## O que ela faz

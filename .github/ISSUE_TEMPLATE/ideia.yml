@@ -1,0 +1,28 @@
+name: Ideia de skill
+description: Sugira uma tarefa que uma skill poderia resolver
+title: "[Ideia] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: tarefa
+    attributes:
+      label: Que tarefa você quer que a IA faça melhor?
+      description: Conte o que você pede hoje e o que costuma dar errado.
+    validations:
+      required: true
+  - type: input
+    id: exemplo
+    attributes:
+      label: Exemplo de pedido
+      placeholder: melhora o texto do meu currículo para vagas de design
+  - type: dropdown
+    id: onde
+    attributes:
+      label: Onde você usaria?
+      multiple: true
+      options:
+        - Claude (site ou app)
+        - Claude Code
+        - ChatGPT
+        - Codex
+        - Outro

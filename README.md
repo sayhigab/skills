@@ -1,68 +1,110 @@
-<div align="center">
-
-# Skills
-
-**Skills em português para o Claude e o ChatGPT.**
-
-![Licença MIT](https://img.shields.io/badge/licen%C3%A7a-MIT-16A34A?style=flat-square) <!-- selo:inicio -->![Skills](https://img.shields.io/badge/skills-1-6D28D9?style=flat-square)<!-- selo:fim --> ![Claude](https://img.shields.io/badge/Claude-Code%20%C2%B7%20.ai%20%C2%B7%20app-D97757?style=flat-square) ![ChatGPT](https://img.shields.io/badge/ChatGPT-GPT%20personalizado-10A37F?style=flat-square) [![Validação](https://img.shields.io/github/actions/workflow/status/sayhigab/skills/validar.yml?branch=main&style=flat-square&label=valida%C3%A7%C3%A3o)](https://github.com/sayhigab/skills/actions/workflows/validar.yml)
-
-[Skills](#skills-disponíveis) · [Como instalar](#como-instalar) · [Como usar](#como-usar) · [Para desenvolvedores](#para-desenvolvedores)
-
-</div>
-
-## O que é isso?
-
-Uma **skill** é um conjunto de instruções que ensina a inteligência artificial a fazer uma tarefa específica muito bem, do jeito que um especialista faria.
-
-Você instala uma vez e esquece: sempre que pedir algo relacionado, a IA usa a skill sozinha. Não precisa de comando especial nem de lembrar o nome dela.
-
-## Skills disponíveis
-
-<!-- skills:inicio -->
-| Skill | O que faz | Baixar |
-| :-- | :-- | :-- |
-| [**Aprimorar design de site**](skills/aprimorar-design-site)<br><sub>`aprimorar-design-site` · design</sub> | Melhora um site existente sem mudar a identidade — design, animações e performance — e corrige sozinha fontes e acentos quebrados. | [Claude](https://github.com/sayhigab/skills/raw/main/dist/aprimorar-design-site.skill) · [ChatGPT](https://github.com/sayhigab/skills/raw/main/dist/aprimorar-design-site-chatgpt.zip) |
-<!-- skills:fim -->
+<h1 align="center">
+  <img src="docs/assets/logo.svg" alt="" width="56" valign="middle" /> Skills
+</h1>
 
 <p align="center">
-  <img src="exemplos/aprimorar-design-site/antes-depois.jpg" alt="Antes e depois da skill Aprimorar design de site: o site com acentos quebrados, fonte errada e layout estourado no celular, e a versão corrigida com a mesma identidade visual" width="560">
-  <br><sub>Aprimorar design de site: mesmo site, mesma identidade — acentos, fontes e layout consertados.</sub>
+  <a href="https://github.com/sayhigab/skills/stargazers"><img src="https://img.shields.io/github/stars/sayhigab/skills?style=flat&amp;label=%E2%98%85&amp;color=7C3AED" alt="Estrelas no GitHub" /></a>
+  <!-- selo:inicio --><img src="https://img.shields.io/badge/skills-1-7C3AED?style=flat" alt="1 skill(s)" /><!-- selo:fim -->
+  <img src="https://img.shields.io/badge/licen%C3%A7a-MIT-7C3AED?style=flat" alt="Licença MIT" />
+  <a href="https://github.com/sayhigab/skills/actions/workflows/validar.yml"><img src="https://img.shields.io/github/actions/workflow/status/sayhigab/skills/validar.yml?branch=main&amp;style=flat&amp;label=valida%C3%A7%C3%A3o" alt="Validação" /></a>
+  <img src="https://img.shields.io/badge/Claude%20%7C%20ChatGPT%20%7C%20Codex-4493F8?style=flat-square" alt="Funciona no Claude, no ChatGPT e no Codex" />
 </p>
 
-## Como instalar
+<p align="center">
+  <sub><b>Português</b> · <a href="docs/readme/README.en.md">English</a></sub>
+</p>
 
-Escolha onde você usa a IA.
+<p align="center">
+  <strong>Ensine a IA a trabalhar como especialista.</strong><br/>
+  Skills são instruções prontas que você instala no Claude ou no ChatGPT. Depois disso, a IA faz certas tarefas<br/>do jeito que um especialista faria — e usa a skill sozinha sempre que o seu pedido combinar.
+</p>
 
-### No Claude (site ou aplicativo)
+<h3 align="center"><a href="#instalar"><ins>Instalar uma skill</ins></a></h3>
 
-1. Na [tabela acima](#skills-disponíveis), clique em **Claude** para baixar a skill.
-2. Abra o Claude e entre em **Configurações → Capacidades**.
-3. Deixe ligada a opção **Execução de código e criação de arquivos**.
-4. Na parte **Skills**, envie o arquivo que você baixou.
+## Skills
 
-### No ChatGPT
+<!-- skills:inicio -->
+<table>
+<tr>
+<td width="50%" valign="middle">
 
-1. Na [tabela acima](#skills-disponíveis), clique em **ChatGPT** e descompacte o arquivo baixado.
-2. No ChatGPT, abra **GPTs → Criar** e vá na aba **Configurar**.
-3. Abra o arquivo `instrucoes.md`, copie todo o texto e cole no campo **Instruções**.
-4. Em **Conhecimento**, envie os arquivos da pasta `conhecimento`.
-5. Em **Capacidades**, ligue o **Interpretador de código**.
-6. Salve. A partir daí, é só conversar com esse GPT.
+### Aprimorar design de site
 
-### No Claude Code
+Melhora um site existente sem mudar a identidade — design, animações e performance — e corrige sozinha fontes e acentos quebrados.
 
-Digite dentro do Claude Code:
+[Baixar para Claude](https://github.com/sayhigab/skills/raw/main/dist/aprimorar-design-site.skill) · [Baixar para ChatGPT](https://github.com/sayhigab/skills/raw/main/dist/aprimorar-design-site-chatgpt.zip) · [Detalhes →](skills/aprimorar-design-site)
+
+</td>
+<td width="50%">
+  <a href="skills/aprimorar-design-site"><img src="exemplos/aprimorar-design-site/capa.jpg" alt="Aprimorar design de site" width="100%" /></a>
+</td>
+</tr>
+</table>
+<!-- skills:fim -->
+
+**Em todas as skills:**
+
+- **Em português** — instruções, exemplos e respostas pensados para quem fala português.
+- **Funcionam sozinhas** — você pede do seu jeito e a IA percebe quando usar a skill. Nenhum comando para decorar.
+- **Testadas de verdade** — cada uma é usada num caso real antes de ser publicada, com exemplo de antes e depois.
+- **Leves** — nada para instalar além da própria skill; os scripts usam só o Node, sem dependências.
+- **Grátis e abertas** — licença MIT: use, adapte e compartilhe.
+
+---
+
+## Onde funciona
+
+No Claude e em qualquer agente compatível com o padrão aberto **Agent Skills** — e no ChatGPT como GPT personalizado.
+
+<p>
+  <a href="https://claude.ai"><kbd><img src="https://www.google.com/s2/favicons?domain=claude.ai&amp;sz=64" alt="" width="16" valign="middle" /> Claude (site e app)</kbd></a> &nbsp;
+  <a href="https://code.claude.com/docs"><kbd><img src="https://www.google.com/s2/favicons?domain=claude.ai&amp;sz=64" alt="" width="16" valign="middle" /> Claude Code</kbd></a> &nbsp;
+  <a href="https://chatgpt.com"><kbd><img src="https://www.google.com/s2/favicons?domain=chatgpt.com&amp;sz=64" alt="" width="16" valign="middle" /> ChatGPT</kbd></a> &nbsp;
+  <a href="https://github.com/openai/codex"><kbd><img src="https://www.google.com/s2/favicons?domain=openai.com&amp;sz=64" alt="" width="16" valign="middle" /> Codex</kbd></a> &nbsp;
+  <kbd>+ agentes compatíveis com Agent Skills</kbd>
+</p>
+
+---
+
+## Instalar
+
+### Claude — site e aplicativo
+
+1. No cartão da skill, clique em **Baixar para Claude**.
+2. No Claude, abra **Configurações → Capacidades** e deixe ligada a **Execução de código e criação de arquivos**.
+3. Em **Skills**, envie o arquivo baixado. Pronto.
+
+### ChatGPT
+
+1. No cartão da skill, clique em **Baixar para ChatGPT** e descompacte o arquivo.
+2. No ChatGPT, abra **GPTs → Criar → Configurar**.
+3. Cole o texto de `instrucoes.md` em **Instruções** e envie os arquivos da pasta `conhecimento` em **Conhecimento**.
+4. Em **Capacidades**, ligue o **Interpretador de código** e salve.
+
+### Claude Code
 
 ```text
 /plugin marketplace add sayhigab/skills
 /plugin install aprimorar-design-site@sayhigab-skills
 ```
 
-## Como usar
+_Para receber atualizações: `/plugin marketplace update sayhigab-skills`._
 
-Peça do seu jeito, como pediria a uma pessoa. Por exemplo: *"melhora o visual do meu site"*. A IA percebe que o pedido combina com a skill e segue as instruções dela.
+### Codex e outros agentes
 
-Cada skill tem uma página com exemplos de pedidos — é só clicar no nome dela na tabela.
+Copie a pasta da skill (`skills/<nome>`) para `~/.codex/skills/` ou para a pasta de skills do seu agente.
+
+### Como usar
+
+Peça do seu jeito, como pediria a uma pessoa — por exemplo, *"melhora o visual do meu site"*. A IA reconhece que o pedido combina com a skill e segue as instruções dela. A página de cada skill tem mais exemplos.
+
+---
+
+## Comunidade e suporte
+
+- **Ideias:** tem uma tarefa que uma skill resolveria? [Sugira uma skill](https://github.com/sayhigab/skills/issues/new?template=ideia.yml).
+- **Problemas:** algo não funcionou? [Conte o que aconteceu](https://github.com/sayhigab/skills/issues/new?template=problema.yml).
+- **Apoie:** deixe uma [estrela](https://github.com/sayhigab/skills) para acompanhar as novas skills.
 
 ---
 
@@ -70,30 +112,20 @@ Cada skill tem uma página com exemplos de pedidos — é só clicar no nome del
 
 ### Formato
 
-As skills seguem o padrão aberto de **Agent Skills**: um `SKILL.md` com frontmatter YAML (`name`, `description`) e instruções em Markdown, mais recursos opcionais (`scripts/`, `assets/`, `references/`).
+Cada skill segue o padrão **Agent Skills**: um `SKILL.md` com frontmatter YAML (`name`, `description`) e instruções em Markdown, mais scripts e arquivos de apoio opcionais.
 
-O carregamento é progressivo. Só `name` e `description` ficam sempre no contexto. O corpo do `SKILL.md` entra quando a skill é acionada, e os scripts rodam sem ocupar contexto. Por isso a `description` de cada skill é escrita para acionamento: diz o que a skill faz **e** em que situações usar.
+O carregamento é progressivo: só `name` e `description` ficam sempre no contexto; o corpo do `SKILL.md` entra quando a skill é acionada, e os scripts rodam sem ocupar contexto. Por isso a `description` é escrita para acionamento — diz o que a skill faz **e** em que situações usar.
 
 ### Compatibilidade
 
 | Plataforma | Instalação | Scripts da skill |
 | :-- | :-- | :-- |
-| Claude Code | `/plugin` (abaixo) ou copiar a pasta para `~/.claude/skills/` | Rodam na sua máquina (Node 18+) |
-| Claude.ai e app | Upload do `.skill` | Rodam no ambiente de execução de código do Claude |
-| Codex (OpenAI) | Copiar a pasta para `~/.codex/skills/` | Rodam na sua máquina |
+| Claude Code | `/plugin` ou cópia para `~/.claude/skills/` (usuário) ou `.claude/skills/` (projeto) | Rodam na sua máquina (Node 18+) |
+| Claude (site e app) | Upload do `.skill` | Rodam no ambiente de execução de código do Claude |
+| Codex | Cópia para `~/.codex/skills/` | Rodam na sua máquina |
 | ChatGPT | GPT personalizado (instruções + conhecimento) | Pelo Interpretador de código; sem Node, a IA aplica as regras manualmente |
 
-### Claude Code
-
-O repositório é um catálogo de plugins do Claude Code, e cada skill é um plugin separado — instale só as que quiser.
-
-```text
-/plugin marketplace add sayhigab/skills            # adiciona o catálogo
-/plugin install <skill>@sayhigab-skills            # instala uma skill
-/plugin marketplace update sayhigab-skills         # busca novas versões
-```
-
-Para usar sem o catálogo, copie `skills/<skill>` para `~/.claude/skills/` (todos os projetos) ou para `.claude/skills/` de um projeto.
+No Claude Code, o repositório é um catálogo de plugins e cada skill é um plugin separado — instale só as que quiser.
 
 ### Build e CI
 
@@ -104,16 +136,18 @@ node ferramentas/build.mjs --verificar  # só confere (é o que o CI roda)
 
 Sem dependências, Node 18+. O build:
 
-- **valida** cada skill: `name` em kebab-case igual ao da pasta, `description` com até 1.024 caracteres e sem `<` ou `>`, só campos aceitos pelo Claude.ai, valores YAML que precisariam de aspas, `metadata.titulo` e `metadata.resumo`, e `chatgpt.md` dentro do limite de 8.000 caracteres de um GPT;
-- **gera** o `.skill` (Claude) e o `-chatgpt.zip` de cada skill, o catálogo `.claude-plugin/marketplace.json` e a tabela de skills deste README;
-- produz **zips determinísticos** (sem compressão, data fixa, quebras de linha LF): o mesmo conteúdo gera os mesmos bytes em Windows, macOS e Linux, então o CI consegue conferir se os pacotes publicados estão em dia.
+- **valida** cada skill: `name` em kebab-case igual ao da pasta, `description` com até 1.024 caracteres e sem `<` ou `>`, só campos aceitos pelo Claude, valores YAML que precisariam de aspas e o limite de 8.000 caracteres das instruções de um GPT;
+- **gera** os pacotes de cada skill (`.skill` e `-chatgpt.zip`), o catálogo `.claude-plugin/marketplace.json` e os cartões de skills dos READMEs;
+- produz **zips determinísticos** (sem compressão, data fixa, quebras de linha LF): o mesmo conteúdo gera os mesmos bytes em qualquer sistema, então o CI confere se os pacotes publicados estão em dia.
 
 ### Contribuir
 
 Issues e pull requests são bem-vindos. Antes de abrir um PR, rode `node ferramentas/build.mjs` e inclua os arquivos gerados.
 
+<a href="https://github.com/sayhigab/skills/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=sayhigab/skills" alt="Pessoas que contribuíram" />
+</a>
+
 ## Licença
 
-[MIT](LICENSE).
-
-<sub>**English:** Portuguese-language Agent Skills for Claude (Claude Code, Claude.ai, desktop) with ChatGPT custom-GPT versions. Install in Claude Code with `/plugin marketplace add sayhigab/skills`, or download the packages from the table above.</sub>
+Gratuito e de código aberto sob a [licença MIT](LICENSE).

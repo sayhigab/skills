@@ -5,6 +5,8 @@ license: MIT
 metadata:
   titulo: Aprimorar design de site
   resumo: Melhora um site existente sem mudar a identidade — design, animações e performance — e corrige sozinha fontes e acentos quebrados.
+  titulo-en: Website design polish
+  resumo-en: Improves an existing website without changing its identity — design, animations and performance — and automatically fixes broken fonts and accented characters.
   categoria: design
   palavras-chave: design, frontend, css, animações, performance, acessibilidade, encoding
 ---
