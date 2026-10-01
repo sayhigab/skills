@@ -226,9 +226,10 @@ const LEIAMES = [
   { arquivo: 'README.md', idioma: 'pt', prefixo: '' },
   { arquivo: 'docs/readme/README.en.md', idioma: 'en', prefixo: '../../' },
 ];
+// .skill é o pacote padrão de Agent Skills (Claude e o app do Codex abrem direto); .zip é o kit do GPT personalizado.
 const TEXTOS = {
-  pt: { claude: 'Baixar para Claude', chatgpt: 'Baixar para ChatGPT', detalhes: 'Detalhes →' },
-  en: { claude: 'Download for Claude', chatgpt: 'Download for ChatGPT', detalhes: 'Details (in Portuguese) →' },
+  pt: { skill: 'Baixar .skill', ondeSkill: 'Claude e Codex', zip: 'Baixar .zip', ondeZip: 'ChatGPT (GPT personalizado)', detalhes: 'Detalhes →' },
+  en: { skill: 'Download .skill', ondeSkill: 'Claude and Codex', zip: 'Download .zip', ondeZip: 'ChatGPT (custom GPT)', detalhes: 'Details (in Portuguese) →' },
 };
 const baixar = arq => `${URL_REPO}/raw/main/dist/${arq}`;
 const attr = v => v.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
@@ -240,10 +241,9 @@ function cartoes(idioma, prefixo) {
     const titulo = (idioma === 'en' && s.meta['titulo-en']) || s.meta.titulo;
     const resumo = (idioma === 'en' && s.meta['resumo-en']) || s.meta.resumo;
     const pagina = `${prefixo}skills/${s.nome}`;
-    const links = [`[${t.claude}](${baixar(`${s.nome}.skill`)})`];
-    if (s.chatgpt) links.push(`[${t.chatgpt}](${baixar(`${s.nome}-chatgpt.zip`)})`);
-    links.push(`[${t.detalhes}](${pagina})`);
-    const celulaTexto = `<td ${s.capa ? 'width="50%"' : 'colspan="2"'} valign="middle">\n\n### ${titulo}\n\n${resumo}\n\n${links.join(' · ')}\n\n</td>`;
+    const downloads = [`**[${t.skill}](${baixar(`${s.nome}.skill`)})** — ${t.ondeSkill}`];
+    if (s.chatgpt) downloads.push(`**[${t.zip}](${baixar(`${s.nome}-chatgpt.zip`)})** — ${t.ondeZip}`);
+    const celulaTexto = `<td ${s.capa ? 'width="50%"' : 'colspan="2"'} valign="middle">\n\n### ${titulo}\n\n${resumo}\n\n${downloads.join('<br>\n')}\n\n[${t.detalhes}](${pagina})\n\n</td>`;
     const celulaCapa = s.capa && `<td width="50%">\n  <a href="${pagina}"><img src="${prefixo}exemplos/${s.nome}/${s.capa}" alt="${attr(titulo)}" width="100%" /></a>\n</td>`;
     return ['<tr>', celulaTexto, celulaCapa, '</tr>'].filter(Boolean).join('\n');
   });

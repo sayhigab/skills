@@ -34,7 +34,10 @@
 
 Improves an existing website without changing its identity — design, animations and performance — and automatically fixes broken fonts and accented characters.
 
-[Download for Claude](https://github.com/sayhigab/skills/raw/main/dist/aprimorar-design-site.skill) · [Download for ChatGPT](https://github.com/sayhigab/skills/raw/main/dist/aprimorar-design-site-chatgpt.zip) · [Details (in Portuguese) →](../../skills/aprimorar-design-site)
+**[Download .skill](https://github.com/sayhigab/skills/raw/main/dist/aprimorar-design-site.skill)** — Claude and Codex<br>
+**[Download .zip](https://github.com/sayhigab/skills/raw/main/dist/aprimorar-design-site-chatgpt.zip)** — ChatGPT (custom GPT)
+
+[Details (in Portuguese) →](../../skills/aprimorar-design-site)
 
 </td>
 <td width="50%">
@@ -70,15 +73,22 @@ In Claude and any agent that supports the open **Agent Skills** standard — and
 
 ## Install
 
+Each skill comes in two files: the **`.skill`**, which works in Claude and Codex, and the **`.zip`**, which sets up a custom GPT in ChatGPT.
+
 ### Claude — web and app
 
-1. On the skill's card, click **Download for Claude**.
+1. On the skill's card, click **Download .skill**.
 2. In Claude, open **Settings → Capabilities** and keep **Code execution and file creation** turned on.
 3. Under **Skills**, upload the downloaded file. Done.
 
+### Codex — app
+
+1. On the skill's card, click **Download .skill**.
+2. Open the downloaded file: the Codex app installs the skill.
+
 ### ChatGPT
 
-1. On the skill's card, click **Download for ChatGPT** and unzip the file.
+1. On the skill's card, click **Download .zip** and unzip the file.
 2. In ChatGPT, open **GPTs → Create → Configure**.
 3. Paste the text of `instrucoes.md` into **Instructions** and upload the files from the `conhecimento` folder under **Knowledge**.
 4. Under **Capabilities**, turn on **Code Interpreter** and save.
@@ -92,9 +102,9 @@ In Claude and any agent that supports the open **Agent Skills** standard — and
 
 _To get updates: `/plugin marketplace update sayhigab-skills`._
 
-### Codex and other agents
+### Other agents
 
-Copy the skill's folder (`skills/<name>`) to `~/.codex/skills/` or to your agent's skills folder.
+Copy the skill's folder (`skills/<name>`) to your agent's skills folder — for the Codex CLI, `~/.codex/skills/`.
 
 ### Usage
 
@@ -124,7 +134,7 @@ Loading is progressive: only `name` and `description` stay in context; the `SKIL
 | :-- | :-- | :-- |
 | Claude Code | `/plugin`, or copy to `~/.claude/skills/` (user) or `.claude/skills/` (project) | Run on your machine (Node 18+) |
 | Claude (web and app) | Upload the `.skill` | Run in Claude's code execution environment |
-| Codex | Copy to `~/.codex/skills/` | Run on your machine |
+| Codex | Open the `.skill` in the app, or copy to `~/.codex/skills/` | Run on your machine |
 | ChatGPT | Custom GPT (instructions + knowledge) | Through Code Interpreter; without Node, the model applies the rules manually |
 
 In Claude Code, the repository is a plugin marketplace and each skill is its own plugin — install only the ones you want.

@@ -32,7 +32,10 @@
 
 Melhora um site existente sem mudar a identidade — design, animações e performance — e corrige sozinha fontes e acentos quebrados.
 
-[Baixar para Claude](https://github.com/sayhigab/skills/raw/main/dist/aprimorar-design-site.skill) · [Baixar para ChatGPT](https://github.com/sayhigab/skills/raw/main/dist/aprimorar-design-site-chatgpt.zip) · [Detalhes →](skills/aprimorar-design-site)
+**[Baixar .skill](https://github.com/sayhigab/skills/raw/main/dist/aprimorar-design-site.skill)** — Claude e Codex<br>
+**[Baixar .zip](https://github.com/sayhigab/skills/raw/main/dist/aprimorar-design-site-chatgpt.zip)** — ChatGPT (GPT personalizado)
+
+[Detalhes →](skills/aprimorar-design-site)
 
 </td>
 <td width="50%">
@@ -68,15 +71,22 @@ No Claude e em qualquer agente compatível com o padrão aberto **Agent Skills**
 
 ## Instalar
 
+Cada skill tem dois arquivos: o **`.skill`**, que funciona no Claude e no Codex, e o **`.zip`**, que monta um GPT personalizado no ChatGPT.
+
 ### Claude — site e aplicativo
 
-1. No cartão da skill, clique em **Baixar para Claude**.
+1. No cartão da skill, clique em **Baixar .skill**.
 2. No Claude, abra **Configurações → Capacidades** e deixe ligada a **Execução de código e criação de arquivos**.
 3. Em **Skills**, envie o arquivo baixado. Pronto.
 
+### Codex — aplicativo
+
+1. No cartão da skill, clique em **Baixar .skill**.
+2. Abra o arquivo baixado: o app do Codex instala a skill.
+
 ### ChatGPT
 
-1. No cartão da skill, clique em **Baixar para ChatGPT** e descompacte o arquivo.
+1. No cartão da skill, clique em **Baixar .zip** e descompacte o arquivo.
 2. No ChatGPT, abra **GPTs → Criar → Configurar**.
 3. Cole o texto de `instrucoes.md` em **Instruções** e envie os arquivos da pasta `conhecimento` em **Conhecimento**.
 4. Em **Capacidades**, ligue o **Interpretador de código** e salve.
@@ -90,9 +100,9 @@ No Claude e em qualquer agente compatível com o padrão aberto **Agent Skills**
 
 _Para receber atualizações: `/plugin marketplace update sayhigab-skills`._
 
-### Codex e outros agentes
+### Outros agentes
 
-Copie a pasta da skill (`skills/<nome>`) para `~/.codex/skills/` ou para a pasta de skills do seu agente.
+Copie a pasta da skill (`skills/<nome>`) para a pasta de skills do seu agente — no Codex pelo terminal, `~/.codex/skills/`.
 
 ### Como usar
 
@@ -122,7 +132,7 @@ O carregamento é progressivo: só `name` e `description` ficam sempre no contex
 | :-- | :-- | :-- |
 | Claude Code | `/plugin` ou cópia para `~/.claude/skills/` (usuário) ou `.claude/skills/` (projeto) | Rodam na sua máquina (Node 18+) |
 | Claude (site e app) | Upload do `.skill` | Rodam no ambiente de execução de código do Claude |
-| Codex | Cópia para `~/.codex/skills/` | Rodam na sua máquina |
+| Codex | Abrir o `.skill` no app, ou cópia para `~/.codex/skills/` | Rodam na sua máquina |
 | ChatGPT | GPT personalizado (instruções + conhecimento) | Pelo Interpretador de código; sem Node, a IA aplica as regras manualmente |
 
 No Claude Code, o repositório é um catálogo de plugins e cada skill é um plugin separado — instale só as que quiser.
