@@ -1,0 +1,11 @@
+# Texto sempre com LF, em qualquer sistema
+* text=auto eol=lf
+
+# Pacotes gerados
+*.skill binary
+*.zip binary
+*.png binary
+*.jpg binary
+
+# Exemplo propositalmente quebrado (arquivo em Latin-1, acentos corrompidos): preservar os bytes exatos
+exemplos/*/antes/** -text

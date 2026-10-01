@@ -1,0 +1,247 @@
+/* Tokens — paleta e escala do próprio site */
+:root {
+  --cafe: #3b2a20;
+  --creme: #f6efe6;
+  --terracota: #c0612b;
+  --terracota-escuro: #ad5424; /* mesmo tom, contraste AA com texto branco */
+  --terracota-hover: #9a4a1f;
+  --latte: #c9b8a6;
+  --texto-suave: #6f5a4b;
+  --branco: #fff;
+
+  --fonte-titulo: 'Playfair Display', 'Playfair reserva', Georgia, serif;
+  --fonte-texto: 'Poppins', 'Poppins reserva', system-ui, sans-serif;
+
+  --e2: 8px; --e3: 12px; --e4: 16px; --e5: 24px; --e6: 32px; --e7: 48px; --e8: 72px;
+  --raio: 14px;
+  --raio-botao: 8px;
+  --sombra: 0 1px 2px rgb(59 42 32 / .06), 0 8px 24px rgb(59 42 32 / .08);
+  --sombra-hover: 0 2px 4px rgb(59 42 32 / .08), 0 18px 36px rgb(59 42 32 / .14);
+  --largura: 1100px;
+  --lateral: clamp(16px, 5vw, 40px);
+  --suave: cubic-bezier(.2, .7, .3, 1);
+}
+
+/* Fontes de reserva com a mesma largura das fontes do site: enquanto a fonte real
+   carrega, o texto já quebra nas mesmas linhas, então a página não "pula" quando ela chega. */
+@font-face { font-family: 'Poppins reserva'; src: local('Arial'), local('ArialMT'); font-weight: 400 500; size-adjust: 112.8%; }
+@font-face { font-family: 'Poppins reserva'; src: local('Arial Bold'), local('Arial-BoldMT'); font-weight: 600 700; size-adjust: 107.4%; }
+@font-face { font-family: 'Playfair reserva'; src: local('Georgia Bold'), local('Georgia-Bold'); font-weight: 700; size-adjust: 89.3%; }
+
+/* Fonte da marca: o arquivo fonts/marca.woff2 não existe no projeto.
+   Quando ele for adicionado, reative:
+@font-face { font-family: 'Marca'; src: url('../fonts/marca.woff2') format('woff2'); font-display: swap; } */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body {
+  margin: 0;
+  font-family: var(--fonte-texto);
+  line-height: 1.6;
+  background: var(--creme);
+  color: var(--cafe);
+  -webkit-font-smoothing: antialiased;
+}
+img, svg { display: block; max-width: 100%; }
+[hidden] { display: none !important; }
+h1, h2, h3, p { margin: 0; }
+h1, h2 { font-family: var(--fonte-titulo); font-weight: 700; line-height: 1.15; text-wrap: balance; }
+:focus-visible { outline: 2px solid var(--terracota); outline-offset: 3px; border-radius: 4px; }
+
+.topo-interno, .hero, .secao, .rodape-interno {
+  max-width: var(--largura);
+  margin-inline: auto;
+  padding-inline: var(--lateral);
+}
+
+/* Topo */
+.topo { position: sticky; top: 0; z-index: 10; background: var(--cafe); }
+.topo-interno { display: flex; align-items: center; justify-content: space-between; gap: var(--e4); min-height: 64px; }
+.logo { font-family: var(--fonte-titulo); font-weight: 700; font-size: 1.5rem; color: var(--creme); text-decoration: none; }
+nav { display: flex; gap: var(--e2); }
+nav a {
+  color: var(--latte);
+  text-decoration: none;
+  font-size: .9375rem;
+  font-weight: 500;
+  padding: var(--e2) var(--e3);
+  border-radius: var(--raio-botao);
+  transition: color .2s var(--suave), background-color .2s var(--suave);
+}
+nav a:hover { color: var(--creme); background: rgb(246 239 230 / .08); }
+.menu-btn { display: none; }
+
+/* Hero */
+.hero { padding-block: var(--e8) var(--e7); text-align: center; }
+.hero h1 { font-size: clamp(2.125rem, 6vw, 3.25rem); max-width: 15ch; margin-inline: auto; }
+.hero p { max-width: 44ch; margin: var(--e4) auto var(--e6); color: var(--texto-suave); font-size: 1.0625rem; }
+.hero img { width: 180px; height: auto; margin: var(--e7) auto 0; }
+
+/* Botão */
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: var(--e3) var(--e5);
+  border: 0;
+  border-radius: var(--raio-botao);
+  background: var(--terracota-escuro);
+  color: var(--branco);
+  font: 600 1rem/1 var(--fonte-texto);
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgb(59 42 32 / .15);
+  transition: background-color .2s var(--suave), transform .2s var(--suave), box-shadow .2s var(--suave);
+}
+.botao:hover { background: var(--terracota-hover); transform: translateY(-2px); box-shadow: 0 8px 18px rgb(173 84 36 / .28); }
+.botao:active { transform: translateY(0) scale(.98); box-shadow: 0 1px 2px rgb(59 42 32 / .15); }
+.botao:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+
+/* Seções */
+.secao { padding-block: var(--e7) var(--e8); }
+.secao h2 { font-size: clamp(1.75rem, 4vw, 2.25rem); margin-bottom: var(--e5); }
+
+/* Cardápio */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--e5); }
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e2);
+  padding: var(--e5);
+  background: var(--branco);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+  transition: transform .25s var(--suave), box-shadow .25s var(--suave);
+}
+.card:hover { transform: translateY(-4px); box-shadow: var(--sombra-hover); }
+.card .icone { width: 44px; height: 44px; padding: 10px; margin-bottom: var(--e2); border-radius: 50%; background: var(--creme); fill: var(--terracota); }
+.card h3 { font-size: 1.125rem; font-weight: 600; }
+.card p { flex: 1; color: var(--texto-suave); font-size: .9375rem; }
+.card b { margin-top: var(--e2); font-size: 1.125rem; font-weight: 600; color: var(--terracota-escuro); }
+
+/* Assinatura */
+.intro { max-width: 52ch; color: var(--texto-suave); }
+.intro strong { color: var(--cafe); font-weight: 600; }
+.form-assinatura {
+  display: grid;
+  gap: var(--e5);
+  max-width: 440px;
+  margin-top: var(--e6);
+  padding: var(--e6);
+  background: var(--branco);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+}
+.campo { display: grid; gap: var(--e2); }
+.rotulo { display: flex; align-items: center; font-weight: 500; }
+select {
+  appearance: none;
+  min-height: 48px;
+  padding: 0 var(--e7) 0 var(--e4);
+  border: 1.5px solid var(--latte);
+  border-radius: var(--raio-botao);
+  background: var(--creme) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%233b2a20' stroke-width='1.8'/%3E%3C/svg%3E") no-repeat right 16px center / 12px;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  transition: border-color .2s var(--suave);
+}
+select:hover { border-color: var(--texto-suave); }
+.check { display: inline-flex; align-items: center; gap: var(--e3); min-height: 44px; cursor: pointer; }
+.check input { width: 20px; height: 20px; margin: 0; accent-color: var(--terracota-escuro); cursor: pointer; }
+.msg { min-height: 1.6em; font-weight: 500; opacity: 0; transform: translateY(4px); transition: opacity .25s var(--suave), transform .25s var(--suave); }
+.msg.visivel { opacity: 1; transform: none; }
+
+/* Rodapé */
+.rodape { background: var(--cafe); color: var(--latte); }
+.rodape-interno { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--e2) var(--e5); padding-block: var(--e6); font-size: .875rem; }
+
+/* Ajuda "?" */
+.ajuda { --ajuda-fundo: var(--cafe); --ajuda-texto: var(--creme); position: relative; display: inline-flex; vertical-align: middle; margin-inline-start: .15em; }
+.ajuda > button {
+  all: unset;
+  position: relative;
+  box-sizing: border-box;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle, transparent calc(.55rem - 1.5px), currentColor calc(.55rem - 1.5px) .55rem, transparent .55rem);
+  font: 700 .7rem/1 system-ui, sans-serif;
+  opacity: .55;
+  cursor: help;
+  transition: opacity .15s ease-out;
+}
+.ajuda > button::before { content: ""; position: absolute; inset: -.5rem; }
+.ajuda > button:hover, .ajuda > button:focus-visible, .ajuda.aberto > button { opacity: 1; }
+.ajuda > button:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+.ajuda > [role="tooltip"] {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  z-index: 50;
+  width: max-content;
+  max-width: min(260px, 80vw);
+  padding: .5rem .7rem;
+  border-radius: 8px;
+  background: var(--ajuda-fundo);
+  color: var(--ajuda-texto);
+  font-size: .8125rem;
+  font-weight: 400;
+  line-height: 1.4;
+  text-align: start;
+  box-shadow: 0 6px 20px rgb(0 0 0 / .18);
+  pointer-events: none;
+  display: none; /* escondido de verdade: perto da borda, um balão só invisível criaria rolagem lateral */
+  transform: translate(calc(-50% + var(--ajuda-x, 0px)), 0);
+}
+.ajuda.abaixo > [role="tooltip"] { bottom: auto; top: calc(100% + 8px); }
+.ajuda:not(.calado):hover > [role="tooltip"],
+.ajuda:not(.calado) > button:focus-visible + [role="tooltip"],
+.ajuda.aberto > [role="tooltip"] { display: block; animation: ajuda-entra .15s ease-out; }
+@keyframes ajuda-entra { from { opacity: 0; transform: translate(calc(-50% + var(--ajuda-x, 0px)), 4px); } }
+
+/* Celular */
+@media (max-width: 720px) {
+  .menu-btn {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    border-radius: var(--raio-botao);
+    background: transparent;
+    color: var(--creme);
+    cursor: pointer;
+  }
+  .menu-btn svg { fill: currentColor; }
+  nav {
+    position: absolute;
+    inset: 100% 0 auto;
+    flex-direction: column;
+    gap: 0;
+    padding: 0 var(--lateral) var(--e4);
+    background: var(--cafe);
+    box-shadow: 0 16px 24px rgb(0 0 0 / .2);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity .2s var(--suave), transform .2s var(--suave), visibility .2s;
+  }
+  .topo.aberto nav { opacity: 1; visibility: visible; transform: none; }
+  nav a { padding: var(--e3) 0; font-size: 1rem; }
+  .form-assinatura { padding: var(--e5); }
+}
+
+/* Entrada suave ao rolar (só se a pessoa aceita movimento) */
+@media (prefers-reduced-motion: no-preference) {
+  .js .revelar:not(.visivel) { opacity: 0; }
+  .revelar.visivel { animation: subir .5s var(--suave) calc(var(--i, 0) * 90ms) backwards; }
+  @keyframes subir { from { opacity: 0; transform: translateY(12px); } }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}

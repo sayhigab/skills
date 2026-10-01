@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CafÃ© Aurora â€” Torrefação artesanal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900" rel="stylesheet">
+<link rel="stylesheet" href="css/estilo.css">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="js/app.js"></script>
+</head>
+<body>
+<header class="topo">
+  <div class="logo">CafÃ© Aurora</div>
+  <nav>
+    <a href="#cardapio">CardÃ¡pio</a>
+    <a href="#assinatura">Assinatura</a>
+    <a href="#contato">Contato</a>
+  </nav>
+  <button class="menu-btn"><span class="material-icons">menu</span></button>
+</header>
+
+<section class="hero">
+  <h1>â€œO melhor cafÃ© da cidadeâ€�</h1>
+  <p>GrÃ£os selecionados, torra fresca toda semana e entrega em casa.</p>
+  <a class="botao" href="#assinatura">Quero experimentar</a>
+  <img src="img/xicara.svg">
+</section>
+
+<section id="cardapio">
+  <h2>CardÃ¡pio</h2>
+  <div class="cards">
+    <div class="card">
+      <span class="material-icons">local_cafe</span>
+      <h3>Espresso</h3>
+      <p>Intenso e encorpado, extraÃ­do na hora.</p>
+      <b>R$ 7,00</b>
+    </div>
+    <div class="card">
+      <span class="material-icons">local_cafe</span>
+      <h3>Cappuccino</h3>
+      <p>Cremoso, com canela e cacau.</p>
+      <b>R$ 12,00</b>
+    </div>
+    <div class="card">
+      <span class="material-icons">local_cafe</span>
+      <h3>Coado na hora</h3>
+      <p>MÃ©todo V60, notas de chocolate e caramelo.</p>
+      <b>R$ 9,00</b>
+    </div>
+  </div>
+</section>
+
+<section id="assinatura">
+  <h2>Assinatura mensal</h2>
+  <p>Receba 500g por mÃªs. PromoÃ§Ã£o: primeiro mÃªs com 30% de desconto.</p>
+  <label>Moagem:
+    <select id="moagem">
+      <option>Grãos inteiros</option>
+      <option>Fina (espresso)</option>
+      <option>Média (coado)</option>
+      <option>Grossa (prensa francesa)</option>
+    </select>
+  </label>
+  <p class="explicacao">Explicação: o seletor de moagem acima serve para escolher como o café será moído antes do envio. Se você tem moedor em casa escolha grãos inteiros, pois o café dura mais. Se usa máquina de espresso escolha fina, se usa coador escolha média e se usa prensa francesa escolha grossa. A moagem errada deixa o café amargo ou aguado.</p>
+  <label><input type="checkbox" id="pausar"> Pausa automática</label>
+  <p class="explicacao">A pausa automática serve para pausar a assinatura quando você não abre o e-mail de confirmação por 2 meses seguidos, assim você não recebe café que não vai usar.</p>
+  <button class="botao" id="assinar">Assinar agora</button>
+  <p id="msg"></p>
+</section>
+
+<footer id="contato">
+  <p>Hor�rio de funcionamento: seg a sáb, 7h às 19h</p>
+  <p>Rua das Flores, 123 — São Paulo</p>
+</footer>
+</body>
+</html>

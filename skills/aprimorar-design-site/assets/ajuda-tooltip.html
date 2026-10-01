@@ -1,0 +1,121 @@
+<!--
+  Botão "?" de ajuda — explica uma função em uma frase, sem poluir a tela.
+  Abre com mouse, foco do teclado ou toque; fecha com Esc, clique fora ou tirando o mouse.
+  Uso: copie o <style> e o <script> uma vez; repita o <span class="ajuda"> ao lado de cada função.
+  Troque --ajuda-fundo / --ajuda-texto pelos tokens do site. O "?" herda a cor do texto ao redor.
+  Em React/Vue/Svelte: vire um componente <Ajuda texto="..."/> com o mesmo HTML e comportamento.
+-->
+
+<label for="moagem">Moagem</label>
+<span class="ajuda">
+  <button type="button" aria-label="O que é moagem?" aria-describedby="ajuda-moagem" aria-expanded="false">?</button>
+  <span role="tooltip" id="ajuda-moagem">Como o café é moído antes do envio. Tem moedor em casa? Escolha grãos inteiros.</span>
+</span>
+
+<style>
+  .ajuda {
+    --ajuda-fundo: #1f1f1f;
+    --ajuda-texto: #fff;
+    position: relative;
+    display: inline-flex;
+    vertical-align: middle;
+    margin-inline-start: .15em;
+  }
+  .ajuda > button {
+    all: unset;
+    position: relative;
+    box-sizing: border-box;
+    width: 1.5rem;  /* 24px clicáveis; o círculo desenhado tem ~18px */
+    height: 1.5rem;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: radial-gradient(circle, transparent calc(.55rem - 1.5px), currentColor calc(.55rem - 1.5px) .55rem, transparent .55rem);
+    font: 700 .7rem/1 system-ui, sans-serif;
+    opacity: .55;
+    cursor: help;
+    transition: opacity .15s ease-out;
+  }
+  .ajuda > button::before { content: ""; position: absolute; inset: -.5rem; } /* área de toque extra no celular */
+  .ajuda > button:hover, .ajuda > button:focus-visible, .ajuda.aberto > button { opacity: 1; }
+  .ajuda > button:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+  .ajuda > [role="tooltip"] {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    z-index: 50;
+    width: max-content;
+    max-width: min(260px, 80vw);
+    padding: .5rem .7rem;
+    border-radius: 8px;
+    background: var(--ajuda-fundo);
+    color: var(--ajuda-texto);
+    font-size: .8125rem;
+    font-weight: 400;
+    line-height: 1.4;
+    text-align: start;
+    box-shadow: 0 6px 20px rgb(0 0 0 / .18);
+    pointer-events: none;
+    display: none; /* escondido de verdade: perto da borda, um balão só invisível criaria rolagem lateral */
+    transform: translate(calc(-50% + var(--ajuda-x, 0px)), 0);
+  }
+  .ajuda.abaixo > [role="tooltip"] { bottom: auto; top: calc(100% + 8px); }
+  .ajuda:not(.calado):hover > [role="tooltip"],
+  .ajuda:not(.calado) > button:focus-visible + [role="tooltip"],
+  .ajuda.aberto > [role="tooltip"] {
+    display: block;
+    animation: ajuda-entra .15s ease-out;
+  }
+  @keyframes ajuda-entra { from { opacity: 0; transform: translate(calc(-50% + var(--ajuda-x, 0px)), 4px); } }
+  @media (prefers-reduced-motion: reduce) {
+    .ajuda > [role="tooltip"] { animation: none !important; }
+    .ajuda > button { transition: none; }
+  }
+</style>
+
+<script>
+  (() => {
+    // Mantém o balão dentro da tela (desloca para os lados ou abre para baixo).
+    const posicionar = a => {
+      const tip = a.querySelector('[role="tooltip"]');
+      tip.style.setProperty('--ajuda-x', '0px');
+      a.classList.remove('abaixo');
+      const r = tip.getBoundingClientRect();
+      const m = 8;
+      if (r.left < m) tip.style.setProperty('--ajuda-x', `${m - r.left}px`);
+      else if (r.right > innerWidth - m) tip.style.setProperty('--ajuda-x', `${innerWidth - m - r.right}px`);
+      if (r.top < m) a.classList.add('abaixo');
+    };
+    const fechar = (exceto) => document.querySelectorAll('.ajuda.aberto').forEach(a => {
+      if (a === exceto) return;
+      a.classList.remove('aberto');
+      a.querySelector('button').setAttribute('aria-expanded', 'false');
+    });
+    document.addEventListener('click', e => {
+      const btn = e.target.closest('.ajuda > button');
+      const a = btn?.parentElement;
+      fechar(a);
+      if (!a) return;
+      const abrir = !a.classList.contains('aberto');
+      a.classList.toggle('aberto', abrir);
+      a.classList.remove('calado');
+      btn.setAttribute('aria-expanded', String(abrir));
+      if (abrir) posicionar(a);
+    });
+    for (const ev of ['pointerover', 'focusin']) document.addEventListener(ev, e => {
+      const a = e.target.closest?.('.ajuda');
+      if (!a) return;
+      if (ev === 'focusin') a.classList.remove('calado');
+      if (!a.classList.contains('aberto')) posicionar(a);
+    });
+    document.addEventListener('pointerout', e => {
+      const a = e.target.closest?.('.ajuda');
+      if (a && !a.contains(e.relatedTarget)) a.classList.remove('calado');
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key !== 'Escape') return;
+      fechar();
+      document.querySelectorAll('.ajuda').forEach(a => a.classList.add('calado'));
+    });
+  })();
+</script>

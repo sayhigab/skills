@@ -1,0 +1,20 @@
+name: Validação
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validar:
+    name: Skills e arquivos gerados
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Validar skills e conferir dist/, catálogo e README
+        run: node ferramentas/build.mjs --verificar
+      - name: Sintaxe dos scripts
+        run: for f in $(git ls-files 'skills/**/*.js' 'skills/**/*.mjs' 'ferramentas/*.mjs'); do node --check "$f"; done

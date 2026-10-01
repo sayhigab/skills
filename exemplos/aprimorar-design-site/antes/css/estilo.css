@@ -1,0 +1,36 @@
+@font-face {
+  font-family: 'Marca';
+  src: url('../fonts/marca.woff2') format('woff2');
+}
+
+body { margin: 0; font-family: 'Poppins'; background: #f6efe6; color: #3b2a20; }
+
+.topo { display: flex; justify-content: space-between; align-items: center; padding: 13px 37px; background: #3b2a20; width: 1100px; }
+.logo { font-family: 'Marca'; font-size: 26px; color: #f6efe6; }
+nav a { color: #c9b8a6; margin-left: 23px; text-decoration: none; font-size: 13px; }
+.menu-btn { display: none; }
+
+.hero { padding: 60px 37px; text-align: center; }
+.hero h1 { font-family: 'Playfair Display'; font-size: 44px; margin-bottom: 7px; }
+.hero p { color: #b8a898; font-size: 15px; }
+.hero img { width: 180px; display: block; margin: 30px auto 0; }
+
+.botao { background: #c0612b; color: #fff; padding: 9px 19px; border-radius: 3px; text-decoration: none; border: none; font-size: 14px; transition: all 1s; display: inline-block; }
+.botao:hover { width: 220px; margin-top: -4px; }
+
+#cardapio h2, #assinatura h2 { font-family: 'Playfair Display'; }
+#cardapio h2 { padding: 0 37px; }
+.cards { display: flex; gap: 11px; padding: 0 37px; }
+.card { background: #fff; padding: 21px; border-radius: 14px; width: 33%; transition: all .8s; animation: aparecer 2s; }
+.card:hover { margin-top: -10px; box-shadow: 0 0 30px #000; }
+.card b { color: #c0612b; }
+
+#assinatura { padding: 40px 37px; }
+.explicacao { font-size: 12px; color: #a99a8c; }
+
+footer { background: #3b2a20; color: #7d6a5c; padding: 20px 37px; font-size: 12px; }
+
+@keyframes aparecer {
+  from { opacity: 0; margin-top: 40px; }
+  to { opacity: 1; margin-top: 0; }
+}

@@ -1,0 +1,34 @@
+{
+  "name": "sayhigab-skills",
+  "description": "Skills em português para Claude e ChatGPT, prontas para instalar.",
+  "owner": {
+    "name": "sayhigab",
+    "url": "https://github.com/sayhigab"
+  },
+  "plugins": [
+    {
+      "name": "aprimorar-design-site",
+      "displayName": "Aprimorar design de site",
+      "description": "Melhora um site existente sem mudar a identidade — design, animações e performance — e corrige sozinha fontes e acentos quebrados.",
+      "source": "./",
+      "skills": [
+        "./skills/aprimorar-design-site"
+      ],
+      "category": "design",
+      "keywords": [
+        "design",
+        "frontend",
+        "css",
+        "animações",
+        "performance",
+        "acessibilidade",
+        "encoding"
+      ],
+      "license": "MIT",
+      "author": {
+        "name": "sayhigab"
+      },
+      "homepage": "https://github.com/sayhigab/skills/tree/main/skills/aprimorar-design-site"
+    }
+  ]
+}

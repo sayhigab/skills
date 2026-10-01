@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Café Aurora — Torrefação artesanal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/estilo.css">
+<script>document.documentElement.classList.add('js')</script>
+<script src="js/app.js" defer></script>
+</head>
+<body>
+<svg hidden>
+  <symbol id="i-cafe" viewBox="0 0 24 24"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.9 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/></symbol>
+</svg>
+
+<header class="topo">
+  <div class="topo-interno">
+    <a class="logo" href="#">Café Aurora</a>
+    <button class="menu-btn" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">
+      <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+    </button>
+    <nav id="menu">
+      <a href="#cardapio">Cardápio</a>
+      <a href="#assinatura">Assinatura</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <h1>“O melhor café da cidade”</h1>
+    <p>Grãos selecionados, torra fresca toda semana e entrega em casa.</p>
+    <a class="botao" href="#assinatura">Quero experimentar</a>
+    <img src="img/xicara.svg" width="180" height="144" alt="" fetchpriority="high">
+  </section>
+
+  <section id="cardapio" class="secao">
+    <h2>Cardápio</h2>
+    <div class="cards">
+      <div class="card revelar" style="--i:0">
+        <svg class="icone" aria-hidden="true"><use href="#i-cafe"/></svg>
+        <h3>Espresso</h3>
+        <p>Intenso e encorpado, extraído na hora.</p>
+        <b>R$ 7,00</b>
+      </div>
+      <div class="card revelar" style="--i:1">
+        <svg class="icone" aria-hidden="true"><use href="#i-cafe"/></svg>
+        <h3>Cappuccino</h3>
+        <p>Cremoso, com canela e cacau.</p>
+        <b>R$ 12,00</b>
+      </div>
+      <div class="card revelar" style="--i:2">
+        <svg class="icone" aria-hidden="true"><use href="#i-cafe"/></svg>
+        <h3>Coado na hora</h3>
+        <p>Método V60, notas de chocolate e caramelo.</p>
+        <b>R$ 9,00</b>
+      </div>
+    </div>
+  </section>
+
+  <section id="assinatura" class="secao">
+    <h2>Assinatura mensal</h2>
+    <p class="intro">Receba 500g por mês. <strong>Promoção:</strong> primeiro mês com 30% de desconto.</p>
+
+    <form class="form-assinatura revelar" id="form-assinatura">
+      <div class="campo">
+        <div class="rotulo">
+          <label for="moagem">Moagem</label>
+          <span class="ajuda">
+            <button type="button" aria-label="O que é moagem?" aria-describedby="ajuda-moagem" aria-expanded="false">?</button>
+            <span role="tooltip" id="ajuda-moagem">Como o café chega moído. Tem moedor em casa? Escolha grãos inteiros — o café dura mais.</span>
+          </span>
+        </div>
+        <select id="moagem">
+          <option>Grãos inteiros</option>
+          <option>Fina (espresso)</option>
+          <option>Média (coado)</option>
+          <option>Grossa (prensa francesa)</option>
+        </select>
+      </div>
+
+      <div class="rotulo">
+        <label class="check"><input type="checkbox" id="pausar"> Pausa automática</label>
+        <span class="ajuda">
+          <button type="button" aria-label="O que é pausa automática?" aria-describedby="ajuda-pausa" aria-expanded="false">?</button>
+          <span role="tooltip" id="ajuda-pausa">Pausamos sozinhos se você não abrir o e-mail de confirmação por 2 meses seguidos.</span>
+        </span>
+      </div>
+
+      <button class="botao" type="submit" id="assinar">Assinar agora</button>
+      <p id="msg" class="msg" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+</main>
+
+<footer id="contato" class="rodape">
+  <div class="rodape-interno">
+    <p>Horário de funcionamento: seg a sáb, 7h às 19h</p>
+    <p>Rua das Flores, 123 — São Paulo</p>
+  </div>
+</footer>
+</body>
+</html>
